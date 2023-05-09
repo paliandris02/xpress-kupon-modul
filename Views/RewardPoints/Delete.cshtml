@@ -1,0 +1,64 @@
+﻿@model XpressKuponXpressKupon.Models.RewardPoint
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>RewardPoint</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Points)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Points)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PointsHeld)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PointsHeld)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoreId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoreId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
