@@ -1,0 +1,33 @@
+﻿@Model IEnumerable<XpressKuponXpressKupon.Models.JutalomPont>
+
+    @using System.Text.RegularExpressions
+    @using DotNetNuke.Web.Mvc.Helpers
+
+
+    <div id="Items-@Dnn.ModuleContext.ModuleId">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">UserId</th>
+                    <th scope="col">Points</th>
+                    <th scope="col">PointsHeld</th>
+                    <th scope="col">TransactionTime</th>
+                    <th scope="col">StoreId</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rewardsPoint in Model)
+                {
+                    <tr>
+                        <th scope="row">@rewardsPoint.Id</th>
+                        <td>@rewardsPoint.UserId</td>
+                        <td>@rewardsPoint.Points</td>
+                        <td>@rewardsPoint.PointsHeld</td>
+                        <td>@rewardsPoint.TransactionTime</td>
+                        <td>@rewardsPoint.StoreId</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
