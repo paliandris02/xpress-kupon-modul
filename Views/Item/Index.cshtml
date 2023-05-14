@@ -1,33 +1,33 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable< XpressKuponXpressKupon.Models.Item >>
+﻿@Model IEnumerable<XpressKuponXpressKupon.Models.JutalomPont>
 
-@using System.Text.RegularExpressions
-@using DotNetNuke.Web.Mvc.Helpers
+    @using System.Text.RegularExpressions
+    @using DotNetNuke.Web.Mvc.Helpers
 
 
-<div id="Items-@Dnn.ModuleContext.ModuleId">
-    @if (Model.Count() == 0)
-    {
-        <p>@Dnn.LocalizeString("NoItems")</p>
-    }
-    else
-    {
-        <ul class="tm_tl">
-            @foreach (var item in Model)
-            {
-                <li class="tm_t">
-                    <h3>@item.ItemName</h3>
-                    <div class="tm_td">@item.ItemDescription</div>
-                    @{
-                        if (Dnn.ModuleContext.IsEditable)
-                        {
-                            <div>
-                                <a href="@Url.Action("Edit", "Item", new {ctl = "Edit", itemId = item.ItemId})">@Dnn.LocalizeString("EditItem")</a>
-                                <a href="@Url.Action("Delete", "Item", new {itemId = item.ItemId})">@Dnn.LocalizeString("DeleteItem")</a>
-                            </div>
-                        }
-                    }
-                </li>
-            }
-        </ul>
-    }
-</div>
+    <div id="Items-@Dnn.ModuleContext.ModuleId">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">UserId</th>
+                    <th scope="col">Points</th>
+                    <th scope="col">PointsHeld</th>
+                    <th scope="col">TransactionTime</th>
+                    <th scope="col">StoreId</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var rewardsPoint in Model)
+                {
+                    <tr>
+                        <th scope="row">@rewardsPoint.Id</th>
+                        <td>@rewardsPoint.UserId</td>
+                        <td>@rewardsPoint.Points</td>
+                        <td>@rewardsPoint.PointsHeld</td>
+                        <td>@rewardsPoint.TransactionTime</td>
+                        <td>@rewardsPoint.StoreId</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
