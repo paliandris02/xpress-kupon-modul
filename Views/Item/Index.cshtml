@@ -1,10 +1,16 @@
-﻿@Model IEnumerable<XpressKuponXpressKupon.Models.JutalomPont>
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable< XpressKuponXpressKupon.Models.Item >>
 
-    @using System.Text.RegularExpressions
-    @using DotNetNuke.Web.Mvc.Helpers
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
 
 
-    <div id="Items-@Dnn.ModuleContext.ModuleId">
+<div id="Items-@Dnn.ModuleContext.ModuleId">
+    @if (Model.Count() == 0)
+    {
+        <p>@Dnn.LocalizeString("NoItems")</p>
+    }
+    else
+    {
         <table class="table">
             <thead>
                 <tr>
@@ -17,17 +23,18 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var rewardsPoint in Model)
+                @foreach (var item in Model)
                 {
                     <tr>
-                        <th scope="row">@rewardsPoint.Id</th>
-                        <td>@rewardsPoint.UserId</td>
-                        <td>@rewardsPoint.Points</td>
-                        <td>@rewardsPoint.PointsHeld</td>
-                        <td>@rewardsPoint.TransactionTime</td>
-                        <td>@rewardsPoint.StoreId</td>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.UserId</td>
+                        <td>@item.Points</td>
+                        <td>@item.PointsHeld</td>
+                        <td>@item.TransactionTime</td>
+                        <td>@item.StoreId</td>
                     </tr>
                 }
             </tbody>
         </table>
-    </div>
+    }
+</div>
