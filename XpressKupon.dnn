@@ -81,16 +81,6 @@
                     <helpUrl />
                     <viewOrder>0</viewOrder>
                   </moduleControl>
-				  <moduleControl>
-						<controlKey />
-						<controlSrc>XpressKuponXpressKupon.Controllers/JutalomPontok/Index.mvc</controlSrc>
-						<supportsPartialRendering>False</supportsPartialRendering>
-						<controlTitle />
-						<controlType>View</controlType>
-						<iconFile />
-						<helpUrl />
-						<viewOrder>0</viewOrder>
-				  </moduleControl>
                 </moduleControls>
               </moduleDefinition>
             </moduleDefinitions>
