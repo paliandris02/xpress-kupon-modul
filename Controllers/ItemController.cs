@@ -1,5 +1,5 @@
 ﻿/*
-' Copyright (c) 2023 Xpress
+' Copyright (c) 2023 AndrasPali
 '  All rights reserved.
 ' 
 ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
@@ -26,57 +26,62 @@ namespace XpressKuponXpressKupon.Controllers
 	public class ItemController : DnnController
 	{
 
-		//public ActionResult Delete(int itemId)
-		//{
-		//	ItemManager.Instance.DeleteItem(itemId, ModuleContext.ModuleId);
-		//	return RedirectToDefaultRoute();
-		//}
+		public ActionResult Delete(int itemId)
+		{
+			ItemManager.Instance.DeleteItem(itemId, ModuleContext.ModuleId);
+			return RedirectToDefaultRoute();
+		}
 
-		//public ActionResult Edit(int itemId = -1)
-		//{
-		//	DotNetNuke.Framework.JavaScriptLibraries.JavaScript.RequestRegistration(CommonJs.DnnPlugins);
+		public ActionResult Edit(int itemId = -1)
+		{
+			DotNetNuke.Framework.JavaScriptLibraries.JavaScript.RequestRegistration(CommonJs.DnnPlugins);
 
-		//	var userlist = UserController.GetUsers(PortalSettings.PortalId);
-		//	var users = from user in userlist.Cast<UserInfo>().ToList()
-		//				select new SelectListItem { Text = user.DisplayName, Value = user.UserID.ToString() };
+			var userlist = UserController.GetUsers(PortalSettings.PortalId);
+			var users = from user in userlist.Cast<UserInfo>().ToList()
+						select new SelectListItem { Text = user.DisplayName, Value = user.UserID.ToString() };
 
-		//	ViewBag.Users = users;
+			ViewBag.Users = users;
 
-		//	var item = (itemId == -1)
-		//		 ? new Item { ModuleId = ModuleContext.ModuleId }
-		//		 : ItemManager.Instance.GetItem(itemId, ModuleContext.ModuleId);
+			var item = (itemId == -1)
+				 ? new Item { ModuleId = ModuleContext.ModuleId }
+				 : ItemManager.Instance.GetItem(itemId);
 
-		//	return View(item);
-		//}
+			return View(item);
+		}
 
-		//[HttpPost]
+		[HttpPost]
 		//[DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
-		//public ActionResult Edit(Item item)
+		public ActionResult Edit(Item item)
+		{
+			if (item.GiftCardId == -1)
+			{
+				item.IssueDateUtc = DateTime.UtcNow;
+
+				ItemManager.Instance.CreateItem(item);
+			}
+			else
+			{
+				var existingItem = ItemManager.Instance.GetItem(item.GiftCardId);
+				//itt valami szar
+				existingItem.CardNumber = item.CardNumber;
+				existingItem.Amount = item.Amount;
+				existingItem.UsedAmount = item.UsedAmount;
+				existingItem.ExpirationDateUtc = item.ExpirationDateUtc;
+				existingItem.RecipientName = item.RecipientName;
+				existingItem.Enabled = item.Enabled;				
+
+				ItemManager.Instance.UpdateItem(existingItem);
+			}
+
+			return RedirectToDefaultRoute();
+		}
+
+		//[ModuleAction(ControlKey = "Edit", TitleKey = "AddItem")]
+		//public ActionResult Index()
 		//{
-		//	if (item.ItemId == -1)
-		//	{
-		//		item.CreatedByUserId = User.UserID;
-		//		item.CreatedOnDate = DateTime.UtcNow;
-		//		item.LastModifiedByUserId = User.UserID;
-		//		item.LastModifiedOnDate = DateTime.UtcNow;
-
-		//		ItemManager.Instance.CreateItem(item);
-		//	}
-		//	else
-		//	{
-		//		var existingItem = ItemManager.Instance.GetItem(item.ItemId, item.ModuleId);
-		//		existingItem.LastModifiedByUserId = User.UserID;
-		//		existingItem.LastModifiedOnDate = DateTime.UtcNow;
-		//		existingItem.ItemName = item.ItemName;
-		//		existingItem.ItemDescription = item.ItemDescription;
-		//		existingItem.AssignedUserId = item.AssignedUserId;
-
-		//		ItemManager.Instance.UpdateItem(existingItem);
-		//	}
-
-		//	return RedirectToDefaultRoute();
+		//	var items = ItemManager.Instance.GetItems();
+		//	return View(items);
 		//}
-
 		[ModuleAction(ControlKey = "Edit", TitleKey = "AddItem")]
 		public ActionResult Index()
 		{

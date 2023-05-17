@@ -1,5 +1,5 @@
 ﻿/*
-' Copyright (c) 2023 Xpress
+' Copyright (c) 2023 AndrasPali
 '  All rights reserved.
 ' 
 ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
@@ -19,40 +19,52 @@ namespace XpressKuponXpressKupon.Components
 {
 	internal interface IItemManager
 	{
-		//void CreateItem(Item t);
-		//void DeleteItem(int itemId, int moduleId);
-		//void DeleteItem(Item t);
+		void CreateItem(Item t);
+		void DeleteItem(int itemId, int moduleId);
+		void DeleteItem(Item t);
+		//IEnumerable<Item> GetItems(int moduleId);
 		IEnumerable<Item> GetItems();
+		//Item GetItem(int itemId, int moduleId);
 		Item GetItem(int itemId);
-		//void UpdateItem(Item t);
+		void UpdateItem(Item t);
 	}
 
 	internal class ItemManager : ServiceLocator<IItemManager, ItemManager>, IItemManager
 	{
-		//public void CreateItem(Item t)
+		public void CreateItem(Item t)
+		{
+			using (IDataContext ctx = DataContext.Instance())
+			{
+				var rep = ctx.GetRepository<Item>();
+				rep.Insert(t);
+			}
+		}
+
+		public void DeleteItem(int itemId, int ModuleId)
+		{
+			var t = GetItem(itemId);
+			DeleteItem(t);
+		}
+
+		public void DeleteItem(Item t)
+		{
+			using (IDataContext ctx = DataContext.Instance())
+			{
+				var rep = ctx.GetRepository<Item>();
+				rep.Delete(t);
+			}
+		}
+
+		//public ienumerable<item> GetItems(int moduleid)
 		//{
-		//	using (IDataContext ctx = DataContext.Instance())
+		//	ienumerable<item> t;
+		//	using (idatacontext ctx = datacontext.instance())
 		//	{
-		//		var rep = ctx.GetRepository<Item>();
-		//		rep.Insert(t);
+		//		var rep = ctx.getrepository<item>();
+		//		t = rep.get(moduleid);
 		//	}
+		//	return t;
 		//}
-
-		//public void DeleteItem(int itemId, int moduleId)
-		//{
-		//	var t = GetItem(itemId, moduleId);
-		//	DeleteItem(t);
-		//}
-
-		//public void DeleteItem(Item t)
-		//{
-		//	using (IDataContext ctx = DataContext.Instance())
-		//	{
-		//		var rep = ctx.GetRepository<Item>();
-		//		rep.Delete(t);
-		//	}
-		//}
-
 		public IEnumerable<Item> GetItems()
 		{
 			IEnumerable<Item> t;
@@ -64,31 +76,39 @@ namespace XpressKuponXpressKupon.Components
 			return t;
 		}
 
-		public Item GetItem(int Id)
+		//public item getitem(int itemid, int moduleid)
+		//{
+		//	item t;
+		//	using (idatacontext ctx = datacontext.instance())
+		//	{
+		//		var rep = ctx.getrepository<item>();
+		//		t = rep.getbyid(itemid, moduleid);
+		//	}
+		//	return t;
+		//}	
+		public Item GetItem(int itemId)
 		{
 			Item t;
 			using (IDataContext ctx = DataContext.Instance())
 			{
 				var rep = ctx.GetRepository<Item>();
-				t = rep.GetById(Id);
+				t = rep.GetById(itemId);
 			}
 			return t;
 		}
 
-		//public void UpdateItem(Item t)
-		//{
-		//	using (IDataContext ctx = DataContext.Instance())
-		//	{
-		//		var rep = ctx.GetRepository<Item>();
-		//		rep.Update(t);
-		//	}
-		//}
+		public void UpdateItem(Item t)
+		{
+			using (IDataContext ctx = DataContext.Instance())
+			{
+				var rep = ctx.GetRepository<Item>();
+				rep.Update(t);
+			}
+		}
 
 		protected override System.Func<IItemManager> GetFactory()
 		{
 			return () => new ItemManager();
 		}
-
-		
 	}
 }

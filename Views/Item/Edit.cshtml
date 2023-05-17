@@ -12,17 +12,30 @@
         </h2>
         <fieldset>
             <div class="dnnFormItem">
-                <div><label for="itemName">@Dnn.LocalizeString("lblName")</label></div>
-                @Html.TextBoxFor(m => m.ItemName)
+                <div><label for="CardNumber">@Dnn.LocalizeString("lblCardNumber")</label></div>
+                @Html.TextBoxFor(m => m.CardNumber)
             </div>
             <div class="dnnFormItem">
-                <div><label for="itemDescription">@Dnn.LocalizeString("lblDescription")</label></div>
-                @Html.TextArea("itemDescription", Model.ItemDescription)
-            </div>
+                <div><label for="itemAmount">@Dnn.LocalizeString("lblAmount")</label></div>
+                @Html.TextArea("itemAmount", Model.Amount)
+            </div>           
             <div class="dnnFormItem">
-                <div><label for="itemUser">@Dnn.LocalizeString("lblAssignedUser")</label></div>
-                @Html.DropDownListFor(m => m.AssignedUserId, (IEnumerable<SelectListItem>)ViewBag.Users, "Choose...")
+                <div><label for="itemUsedAmount">@Dnn.LocalizeString("lblUsedAmount")</label></div>
+                @Html.TextArea("itemUsedAmount", Model.UsedAmount)
+            </div>           
+            <div class="dnnFormItem">
+                <div><label for="itemExpirationDateUtc">@Dnn.LocalizeString("lblitemExpirationDateUtc")</label></div>
+                @Html.TextArea("itemExpirationDateUtc", Model.ExpirationDateUtc)
+            </div>           
+            <div class="dnnFormItem">
+                <div><label for="itemRecipientName">@Dnn.LocalizeString("lblRecipientName")</label></div>
+                @Html.TextArea("itemRecipientName", Model.RecipientName)
+            </div>           
+            <div class="dnnFormItem">
+                <div><label for="itemEnabled">@Dnn.LocalizeString("lblEnabled")</label></div>
+                @Html.TextArea("itemEnabled", Model.Enabled)
             </div>
+
             @Html.HiddenFor(m => m.ModuleId)
         </fieldset>
     </div>
