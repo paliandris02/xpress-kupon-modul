@@ -18,20 +18,27 @@ using System.Web.Caching;
 
 namespace XpressKuponXpressKupon.Models
 {
-	[TableName("hcc_RewardsPoints")]
+	[TableName("hcc_GiftCard")]
 	//setup the primary key for table
-	[PrimaryKey("Id", AutoIncrement = true)]
+	[PrimaryKey("GiftCardId", AutoIncrement = true)]
 	//configure caching using PetaPoco
 	[Cacheable("Items", CacheItemPriority.Default, 20)]
 	//scope the objects to the ModuleId of a module on a page (or copy of a module on a page)
 	[Scope("ModuleId")]
 	public class Item
 	{
-		public int Id { get; set; }
-		public string UserId { get; set; }
-		public int Points { get; set; }
-		public int PointsHeld { get; set; }
-		public DateTime TransactionTime { get; set; }
+		public int GiftCardId { get; set; }
 		public int StoreId { get; set; }
+		public int LineItemId { get; set; }
+		public string CardNumber { get; set; }
+		public float Amount { get; set; }
+		public float UsedAmount { get; set; }
+		public DateTime IssueDateUtc { get; set; }
+		public DateTime ExpirationDateUtc { get; set; }
+		public string RecipientEmail { get; set; }
+		public string RecipientName { get; set; }
+		public string GiftMessage { get; set; }
+		public int Enabled { get; set; }
+		public int ModuleId { get; set; }
 	}
 }

@@ -1,9 +1,9 @@
 ﻿<div class="License">
 	<h3>License</h3>
 	<p class="Owner">
-		Xpress  <a href=https://www.dnndev.me/>https://www.dnndev.me/</a></br>
+		AndrasPali  <a href=https://www.dnndev.me/>https://www.dnndev.me/</a></br>
 		Copyright (c) 2023</br>	
-		by Xpress</br>
+		by AndrasPali</br>
 	</p>
     <p>
         Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 

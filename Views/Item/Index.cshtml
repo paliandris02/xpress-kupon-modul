@@ -1,4 +1,4 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable< XpressKuponXpressKupon.Models.Item >>
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<XpressKuponXpressKupon.Models.Item>>
 
 @using System.Text.RegularExpressions
 @using DotNetNuke.Web.Mvc.Helpers
@@ -11,27 +11,37 @@
     }
     else
     {
-        <table class="table">
+        <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">UserId</th>
-                    <th scope="col">Points</th>
-                    <th scope="col">PointsHeld</th>
-                    <th scope="col">TransactionTime</th>
-                    <th scope="col">StoreId</th>
+                    <th scope="col">GiftCardId</th>
+                    @*<th scope="col">LineItemId</th>*@
+                    <th scope="col">CardNumber</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">UsedAmount</th>
+                    <th scope="col">IssueDateUtc</th>
+                    <th scope="col">ExpirationDateUtc</th>
+                    <th scope="col">RecipientEmail</th>
+                    <th scope="col">RecipientName</th>
+                    <th scope="col">Enabled</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <th scope="row">@item.Id</th>
-                        <td>@item.UserId</td>
-                        <td>@item.Points</td>
-                        <td>@item.PointsHeld</td>
-                        <td>@item.TransactionTime</td>
-                        <td>@item.StoreId</td>
+                        <th scope="row">@item.GiftCardId</th>
+                        @*<td>@item.LineItemId</td>*@
+                        <td>@item.CardNumber</td>
+                        <td>@item.Amount</td>
+                        <td>@item.UsedAmount</td>
+                        <td>@item.IssueDateUtc</td>
+                        <td>@item.ExpirationDateUtc</td>
+                        <td>@item.RecipientEmail</td>
+                        <td>@item.RecipientName</td>
+                        <td>@item.Enabled</td>
+                        <td><a href="@Url.Action("Edit", "Item", new {ctl = "Edit", itemId = item.GiftCardId})">@Dnn.LocalizeString("EditItem")</a></td>
+                        <td><a href="@Url.Action("Delete", "Item", new {itemId = item.GiftCardId})">@Dnn.LocalizeString("DeleteItem")</a></td>
                     </tr>
                 }
             </tbody>
