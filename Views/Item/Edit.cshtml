@@ -12,27 +12,27 @@
         </h2>
         <fieldset>
             <div class="dnnFormItem">
-                <div><label for="CardNumber">@Dnn.LocalizeString("lblCardNumber")</label></div>
+                <div><label for="CardNumber">@Dnn.LocalizeString("CardNumber")</label></div>
                 @Html.TextBoxFor(m => m.CardNumber)
             </div>
             <div class="dnnFormItem">
-                <div><label for="itemAmount">@Dnn.LocalizeString("lblAmount")</label></div>
+                <div><label for="itemAmount">@Dnn.LocalizeString("Amount")</label></div>
                 @Html.TextArea("itemAmount", Model.Amount)
             </div>           
             <div class="dnnFormItem">
-                <div><label for="itemUsedAmount">@Dnn.LocalizeString("lblUsedAmount")</label></div>
+                <div><label for="itemUsedAmount">@Dnn.LocalizeString("UsedAmount")</label></div>
                 @Html.TextArea("itemUsedAmount", Model.UsedAmount)
             </div>           
             <div class="dnnFormItem">
-                <div><label for="itemExpirationDateUtc">@Dnn.LocalizeString("lblitemExpirationDateUtc")</label></div>
+                <div><label for="itemExpirationDateUtc">@Dnn.LocalizeString("ExpirationDateUtc")</label></div>
                 @Html.TextArea("itemExpirationDateUtc", Model.ExpirationDateUtc)
             </div>           
             <div class="dnnFormItem">
-                <div><label for="itemRecipientName">@Dnn.LocalizeString("lblRecipientName")</label></div>
+                <div><label for="itemRecipientName">@Dnn.LocalizeString("RecipientName")</label></div>
                 @Html.TextArea("itemRecipientName", Model.RecipientName)
             </div>           
             <div class="dnnFormItem">
-                <div><label for="itemEnabled">@Dnn.LocalizeString("lblEnabled")</label></div>
+                <div><label for="itemEnabled">@Dnn.LocalizeString("Enabled")</label></div>
                 @Html.TextArea("itemEnabled", Model.Enabled)
             </div>
 
