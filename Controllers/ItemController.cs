@@ -50,7 +50,7 @@ namespace XpressKuponXpressKupon.Controllers
 		}
 
 		[HttpPost]
-		//[DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
+		[DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
 		public ActionResult Edit(Item item)
 		{
 			if (item.GiftCardId == -1)
@@ -62,7 +62,7 @@ namespace XpressKuponXpressKupon.Controllers
 			else
 			{
 				var existingItem = ItemManager.Instance.GetItem(item.GiftCardId);
-				//itt valami szar
+				//itt valami szar				
 				existingItem.CardNumber = item.CardNumber;
 				existingItem.Amount = item.Amount;
 				existingItem.UsedAmount = item.UsedAmount;

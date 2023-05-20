@@ -24,7 +24,7 @@ namespace XpressKuponXpressKupon.Components
 		void DeleteItem(Item t);
 		//IEnumerable<Item> GetItems(int moduleId);
 		IEnumerable<Item> GetItems();
-		//Item GetItem(int itemId, int moduleId);
+		Item GetItem(int itemId, int moduleId);
 		Item GetItem(int itemId);
 		void UpdateItem(Item t);
 	}
@@ -76,16 +76,16 @@ namespace XpressKuponXpressKupon.Components
 			return t;
 		}
 
-		//public item getitem(int itemid, int moduleid)
-		//{
-		//	item t;
-		//	using (idatacontext ctx = datacontext.instance())
-		//	{
-		//		var rep = ctx.getrepository<item>();
-		//		t = rep.getbyid(itemid, moduleid);
-		//	}
-		//	return t;
-		//}	
+		public Item GetItem(int itemid, int moduleid)
+		{
+			Item t;
+			using (IDataContext ctx = DataContext.Instance())
+			{
+				var rep = ctx.GetRepository<Item>();
+				t = rep.GetById(itemid, moduleid);
+			}
+			return t;
+		}
 		public Item GetItem(int itemId)
 		{
 			Item t;

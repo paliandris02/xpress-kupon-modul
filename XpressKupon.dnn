@@ -80,6 +80,15 @@
                     <iconFile />
                     <helpUrl />
                     <viewOrder>0</viewOrder>
+                  </moduleControl><moduleControl>
+                    <controlKey>ButtonClickAction</controlKey>
+                    <controlSrc>XpressKuponXpressKupon.Controllers/Item/_Order.mvc</controlSrc>
+                    <supportsPartialRendering>True</supportsPartialRendering>
+                    <controlTitle>XpressKupon Order</controlTitle>
+                    <controlType>Edit</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <viewOrder>0</viewOrder>
                   </moduleControl>
                 </moduleControls>
               </moduleDefinition>
