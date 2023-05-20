@@ -1,0 +1,63 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<XpressKuponXpressKupon.Models.Item>
+
+@using System.Collections.Generic
+@using DotNetNuke.Web.Mvc.Helpers
+
+<div id="Item-@Dnn.ModuleContext.ModuleId">
+    <div class="dnnForm dnnEditBasicSettings" id="dnnEditBasicSettings">
+        <div class="dnnFormExpandContent dnnRight "><a href="#">@Dnn.LocalizeString("ExpandAll")</a></div>
+
+        <h2 id="dnnSitePanel-BasicSettings" class="dnnFormSectionHead dnnClear">
+            <a href="#" class="dnnSectionExpanded">@Dnn.LocalizeString("BasicSettings")</a>
+        </h2>
+        <fieldset>
+            <div class="dnnFormItem">
+                <div><label for="CardNumber">@Dnn.LocalizeString("CardNumber")</label></div>
+                @Html.TextBoxFor(m => m.CardNumber)
+            </div>
+            <div class="dnnFormItem">
+                <div><label for="itemAmount">@Dnn.LocalizeString("Amount")</label></div>
+                @Html.TextArea("itemAmount", Model.Amount)
+            </div>           
+            <div class="dnnFormItem">
+                <div><label for="itemUsedAmount">@Dnn.LocalizeString("UsedAmount")</label></div>
+                @Html.TextArea("itemUsedAmount", Model.UsedAmount)
+            </div>           
+            <div class="dnnFormItem">
+                <div><label for="itemExpirationDateUtc">@Dnn.LocalizeString("ExpirationDateUtc")</label></div>
+                @Html.TextArea("itemExpirationDateUtc", Model.ExpirationDateUtc)
+            </div>           
+            <div class="dnnFormItem">
+                <div><label for="itemRecipientName">@Dnn.LocalizeString("RecipientName")</label></div>
+                @Html.TextArea("itemRecipientName", Model.RecipientName)
+            </div>           
+            <div class="dnnFormItem">
+                <div><label for="itemEnabled">@Dnn.LocalizeString("Enabled")</label></div>
+                @Html.TextArea("itemEnabled", Model.Enabled)
+            </div>
+
+            @Html.HiddenFor(m => m.ModuleId)
+        </fieldset>
+    </div>
+    <button type="submit" class="dnnPrimaryAction">@Dnn.LocalizeString("Submit")</button>
+    <a id="cancelEdit" href="#" class="dnnSecondaryAction">@Dnn.LocalizeString("Cancel")</a>
+</div>
+
+<script type="text/javascript">
+    /*globals jQuery, window, Sys */
+    (function($, Sys) {
+        function dnnEditBasicSettings() {
+            $('#dnnEditBasicSettings').dnnPanels();
+            $('#dnnEditBasicSettings .dnnFormExpandContent a').dnnExpandAll({ expandText: '@Dnn.LocalizeString("ExpandAll")', collapseText: '@Dnn.LocalizeString("CollapseAll")', targetArea: '#dnnEditBasicSettings' });
+        }
+
+        $(function() {
+            $('#cancelEdit').click(function() { dnnModal.closePopUp(false); });
+            dnnEditBasicSettings();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function() {
+                dnnEditBasicSettings();
+            });
+        });
+
+    }(jQuery, window.Sys));
+</script>
