@@ -50,7 +50,7 @@ namespace XpressKuponXpressKupon.Controllers
 		}
 
 		[HttpPost]
-		//[DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
+		[DotNetNuke.Web.Mvc.Framework.ActionFilters.ValidateAntiForgeryToken]
 		public ActionResult Edit(Item item)
 		{
 			if (item.GiftCardId == -1)

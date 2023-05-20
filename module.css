@@ -1,6 +1,11 @@
-usedAll{
-    background-color: #e66868 !important;
+.usedAll {
+    background-color: #a1a1a1c9 !important;
+    opacity: 0.75;
+    /*font-size: 1.2rem;*/
 }
-notUsedAll{
-    background-color: #618afa !important;
+.notUsedAll {
+    background-color: #3269ff !important;
+    color: snow;
+    /*font-size: 1.2rem;*/
 }
+

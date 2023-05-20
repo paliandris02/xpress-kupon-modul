@@ -25,7 +25,7 @@ namespace XpressKuponXpressKupon.Controllers
 	[DnnHandleError]
 	public class OrderController : DnnController
 	{
-		//[HttpGet]
+		[HttpGet]
 		public ActionResult ButtonClickAction()
 		{
 			var orders = OrderManager.Instance.GetOrders();
@@ -38,27 +38,29 @@ namespace XpressKuponXpressKupon.Controllers
 					if(order.Id != item.OrderId) GiftCardCount++;
 				}
 				
-				if(GiftCardCount -1 == items.Count())
+				if(GiftCardCount == items.Count())
 				{
 					Item newGiftCard = new Item
 					{
-						IssueDateUtc = order.TimeOfOrder,
-						RecipientEmail = order.UserEmail,
-						OrderId = order.Id,
+						// GiftCard ID is PrimaryKey, auto incremented
+						StoreId = 1,
 						LineItemId = 1,
 						CardNumber = Guid.NewGuid().ToString(),
 						Amount = (float)(order.GrandTotal * 0.05),
 						UsedAmount = 0,
-						GiftMessage = "asd",
+						IssueDateUtc = order.TimeOfOrder,
 						ExpirationDateUtc = order.TimeOfOrder.AddMonths(1),
+						RecipientEmail = order.UserEmail,
 						RecipientName = "teszt",
-						StoreId = 1,
+						GiftMessage = "teszt",
 						Enabled = 1,
+						ModuleId = 1,
+						OrderId = order.Id,
 					};
 					ItemManager.Instance.CreateItem(newGiftCard);
 				}
 			}
-			return View();
+			return RedirectToDefaultRoute();
 		}
 	}
 }
